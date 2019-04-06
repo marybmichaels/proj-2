@@ -2,12 +2,13 @@ var db = require("../models");
 var request = require("../models/apicall");
 
 module.exports = function(app) {
-  app.get("/api/", function(req, res) {
+  // eslint-disable-next-line no-unused-vars
+  app.get("/api/", function(_req, _res) {
     console.log(request);
   });
 
   // Get all examples
-  app.get("/api/search", function(req, res) {
+  app.get("/api/search", function(_req, res) {
     db.Example.findAll({}).then(function(dbExamples) {
       res.json(dbExamples);
     });
