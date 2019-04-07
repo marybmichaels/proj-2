@@ -1,0 +1,76 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  {{!-- <a class="navbar-brand" href="#">Navbar</a> --}}
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">search</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/saved">saved recipes</a>
+            </li>
+        </ul>
+  </div>
+</nav>
+<section id="recipe-section">
+    <h1 class="text-center" id="name-header">Recipe Name</h1>
+    <br>
+    <div class="container">
+    <div class="row" id="recipe-info">
+        <div class="col-sm-6">
+            <img src="https://www.thecocktaildb.com/images/media/drink/uqqvsp1468924228.jpg" class="rounded-circle img-responsive result-img rec-img">
+        </div>
+        <div class="col-sm-6 rec-details">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Ingredients</h2>
+                    <div class="red-box"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4" id="ingredients">
+                    {{!-- put all ingredients here --}}
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-12">
+                    <h2>Steps</h2>
+                    <div class="red-box"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <br>
+                    <ul>
+                        <li>Do this...</li>
+                        <li>Do that</li>
+                            {{!-- List Steps here --}}
+                    </ul>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-12">
+                    <h2>Suggested Glass</h2>
+                    <div class="red-box"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <p>
+                        {{!-- glass name goes here --}}
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+  </section>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
