@@ -113,3 +113,7 @@ li {
 #recipe-info {
   margin-top: 2em;
 }
+
+.result {
+  cursor: pointer;
+}
