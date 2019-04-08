@@ -1,4 +1,5 @@
 var db = require("../models");
+var path = require("path");
 
 module.exports = function(app) {
   // Load index page
@@ -20,6 +21,27 @@ module.exports = function(app) {
         example: dbExample
       });
     });
+  });
+
+  //get php files
+  // app.get("/login", function(req, res) {
+  //   res.render("index.php");
+  // });
+
+  app.get("/login.html", function(req, res) {
+    res.sendFile(path.join(__dirname, "../views/login/index.html"));
+  });
+
+  app.get("/register.html", function(req, res) {
+    res.sendFile(path.join(__dirname, "../views/login/register.html"));
+  });
+
+  app.get("/forgot.html", function(req, res) {
+    res.sendFile(path.join(__dirname, "../views/login/forgot.html"));
+  });
+
+  app.get("/reset.html", function(req, res) {
+    res.sendFile(path.join(__dirname, "../views/login/reset.html"));
   });
 
   // Render 404 page for any unmatched routes

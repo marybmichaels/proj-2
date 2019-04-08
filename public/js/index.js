@@ -2,6 +2,7 @@
 var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
+var $loginBtn = $("#login");
 var $exampleList = $("#example-list");
 
 // The API object contains methods for each kind of request we'll make
@@ -94,6 +95,13 @@ var handleDeleteBtnClick = function() {
   });
 };
 
+var handleLogin = function() {
+  app.get("/login", function(req, res) {
+    res.sendFile(path.join(__dirname, "../views/login/index.html"));
+  });
+};
+
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
+$loginBtn.on("click", handleLogin);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
