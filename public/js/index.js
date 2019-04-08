@@ -4,6 +4,54 @@ var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
 
+// on #search-btn click, save #search-input val
+$("#search-btn").on("click", function() {
+  var input = $("#search-input")
+    .val()
+    .trim();
+  console.log(input);
+  $("#search-input").val("");
+  $("#search-results").empty();
+
+  var queryURL =
+    "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + input;
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function(response) {
+    console.log(response);
+    if (!response.drinks) {
+      $("<p>")
+        .text("We do not know of any drinks by the name of '" + input + "'.")
+        .addClass("text-center")
+        .appendTo("#search-results");
+    } else {
+      for (i = 0; i < response.drinks.length; i++) {
+        var results = response.drinks[i];
+
+        var rec = $("<div>").attr({
+          class: "result col-sm-3",
+          id: results.id
+        });
+
+        $("<h4>")
+          .text(results.strDrink)
+          .addClass("results-name")
+          .appendTo(rec);
+
+        $("<img>")
+          .attr({
+            src: results.strDrinkThumb,
+            class: "rounded-circle img-responsive result-img"
+          })
+          .appendTo(rec);
+
+        $("#search-results").append(rec);
+      }
+    }
+  });
+});
+
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveExample: function(example) {
