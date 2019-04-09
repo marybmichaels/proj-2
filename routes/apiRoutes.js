@@ -1,11 +1,24 @@
+/* eslint-disable no-unused-vars */
 var db = require("../models");
-var request = require("../models/apicall");
+var request = require("request");
+
+// var request = require("../models/apicall");
 
 module.exports = function(app) {
   // eslint-disable-next-line no-unused-vars
-  app.get("/api/", function(_req, _res) {
-    console.log(request);
-  });
+  // app.get("/api/:input", function(req, res) {
+  //   var drinkname = req.params.input;
+
+  //   var queryURL =
+  //     "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + drinkname;
+  //   $.ajax({
+  //     url: queryURL,
+  //     method: "GET"
+  //   }).then(function(response) {
+  //     console.log(response);
+  //   });
+  //   // console.log(res);
+  // });
 
   // Get all examples
   app.get("/api/search", function(_req, res) {
