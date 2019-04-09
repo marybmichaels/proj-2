@@ -5,6 +5,8 @@ var $submitBtn = $("#submit");
 var $loginBtn = $("#login");
 var $exampleList = $("#example-list");
 
+var path = require("path");
+
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveExample: function(example) {
