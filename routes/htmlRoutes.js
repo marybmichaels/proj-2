@@ -1,13 +1,11 @@
 var db = require("../models");
+var express = require("express");
+var path = require("path");
 
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.render("results", {
-        drinks: dbExamples
-      });
-    });
+    res.render("results");
   });
 
   app.get("/saved", function(req, res) {
@@ -18,12 +16,18 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/view", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.render("view-recipe", {
-        drinks: dbExamples
-      });
-    });
+  app.get("/cocktail/:id", function(req, res) {
+    var id = req.params.id;
+    res.render("view-recipe");
+    console.log("you made it here :" + id);
+
+    // for (var i = 0; i < characters.length; i++) {
+    //   if (chosen === characters[i].routeName) {
+    //     return res.json(characters[i]);
+    //   }
+    // }
+
+    // return res.json(false);
   });
 
   // Load example page and pass in an example by id

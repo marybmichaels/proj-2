@@ -1,38 +1,11 @@
-// var request = require("request");
-
-// function run(){
-
-// request(
-// "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + ,
-// function(error, response, body) {
-//   // if (!error && response.statusCode == 200) {
-//   //   console.log(body); // Print the google web page.
-//   // }
-//   console.log(error)
-//   console.log(response.statusCode)
-//   console.log(body)
-// }
-// );
-// }
-
-// run();
-
-var request = require("request");
-
-async function run(drinkname) {
-  request(
-    "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + drinkname,
-    function(error, response, body) {
-      // if (!error && response.statusCode == 200) {
-      //   console.log(body); // Print the google web page.
-      // }
-      console.log(error);
-      console.log(response.statusCode);
-      console.log(body);
-    }
-  );
+function viewRecipe(id) {
+  var queryURL = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + id;
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function(res) {
+    console.log("hgcvmhvbgc"+res);
+  });
 }
 
-run();
-
-module.exports = run;
+module.exports = viewRecipe;
