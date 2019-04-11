@@ -20,14 +20,6 @@ module.exports = function(app) {
     var id = req.params.id;
     res.render("view-recipe");
     console.log("you made it here :" + id);
-
-    // for (var i = 0; i < characters.length; i++) {
-    //   if (chosen === characters[i].routeName) {
-    //     return res.json(characters[i]);
-    //   }
-    // }
-
-    // return res.json(false);
   });
 
   // Load example page and pass in an example by id
