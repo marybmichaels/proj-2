@@ -3,5 +3,6 @@ module.exports = function(sequelize, DataTypes) {
     text: DataTypes.STRING,
     description: DataTypes.TEXT
   });
+  console.log('hi');
   return Example;
 };
