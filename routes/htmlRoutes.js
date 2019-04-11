@@ -1,5 +1,7 @@
 var db = require("../models");
+// eslint-disable-next-line no-unused-vars
 var express = require("express");
+// eslint-disable-next-line no-unused-vars
 var path = require("path");
 
 module.exports = function(app) {
@@ -20,6 +22,7 @@ module.exports = function(app) {
     var id = req.params.id;
     res.render("view-recipe");
     console.log("you made it here :" + id);
+    $.ajax();
   });
 
   // Load example page and pass in an example by id
