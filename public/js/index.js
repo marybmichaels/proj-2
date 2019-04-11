@@ -23,7 +23,7 @@ $("#search-btn").on("click", function() {
     if (!response.drinks) {
       $("<p>")
         .text("We do not know of any drinks by the name of '" + input + "'.")
-        .addClass("text-center")
+        .addClass("text-center result-par")
         .appendTo("#search-results");
     } else {
       for (i = 0; i < response.drinks.length; i++) {
@@ -31,7 +31,7 @@ $("#search-btn").on("click", function() {
 
         var rec = $("<div>").attr({
           class: "result col-sm-3",
-          id: results.id
+          id: results.idDrink
         });
 
         $("<h4>")
@@ -52,6 +52,15 @@ $("#search-btn").on("click", function() {
   });
 });
 
+$(document).on("click", ".result", function() {
+  var id = this.id;
+  console.log(`
+  ----------
+  ID: ${id}
+  ----------`);
+  API.getDrink(id);
+});
+
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveExample: function(example) {
@@ -62,13 +71,12 @@ var API = {
       type: "POST",
       url: "api/examples",
       data: JSON.stringify(example)
+    }).then(function() {
+      location.reload();
     });
   },
-  getExamples: function() {
-    return $.ajax({
-      url: "api/examples",
-      type: "GET"
-    });
+  getDrink: function(id) {
+    window.location = `/cocktail/${id}`;
   },
   deleteExample: function(id) {
     return $.ajax({
