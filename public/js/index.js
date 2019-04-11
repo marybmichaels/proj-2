@@ -4,6 +4,10 @@ var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
 
+$("form").on("submit", event => {
+  event.preventDefault();
+});
+
 // on #search-btn click, save #search-input val
 $("#search-btn").on("click", function() {
   var input = $("#search-input")
@@ -76,7 +80,7 @@ var API = {
     });
   },
   getDrink: function(id) {
-    window.location = `/cocktail/${id}`;
+    window.location = `/${id}`;
   },
   deleteExample: function(id) {
     return $.ajax({

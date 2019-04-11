@@ -17,26 +17,23 @@
 </nav>
 <section id="recipe-section">
     <div class="text-center">
-    <h1 id="name-header">Recipe Name
-        <button id="save-recipe" class="btn text-white">save</button>
-    </h1>
+    <h1 id="name-header">Recipe Name</h1>
+    <button id="save-recipe" class="btn text-white">save</button>
     </div>
     <br>
     <div class="container">
     <div class="row" id="recipe-info">
         <div class="col-sm-6">
-            <img src="https://www.thecocktaildb.com/images/media/drink/uqqvsp1468924228.jpg" class="rounded-circle img-responsive result-img rec-img">
+            <img id="drink-image" class="rounded-circle img-responsive result-img rec-img">
         </div>
         <div class="col-sm-6 rec-details">
             <div class="row">
                 <div class="col-12">
                     <h2>Ingredients</h2>
-                    <div class="red-box"></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4" id="ingredients">
-                    {{!-- put all ingredients here --}}
+                    <div class="red-box"></div><br>
+                        <ul id="ingredients">
+                        {{!-- put all ingredients here --}}
+                        </ul>
                 </div>
             </div>
             <br>
@@ -49,18 +46,15 @@
             <div class="row">
                 <div class="col-12">
                     <br>
-                    <ul id="steps">
-                        <li>Do this...</li>
-                        <li>Do that</li>
-                            {{!-- List Steps here --}}
-                    </ul>
+                    <p id="steps">
                 </div>
             </div>
             <br>
             <div class="row">
                 <div class="col-12">
                     <h2>Suggested Glass</h2>
-                    <div class="red-box"></div>
+                    <div class="red-box"></div><br>
+                    <p id="glass"></p>
                 </div>
             </div>
             <div class="row">
@@ -77,5 +71,53 @@
   </section>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+console.log("ugh");
+var path = window.location.pathname;
+console.log("path= " + path);
+var split = path.split("/");
+console.log(split);
+var id = split[1];
+console.log(id)
+
+var queryURL =
+    "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + id;
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function(response) {
+    console.log(response);
+    
+    var drink = response.drinks[0];
+
+    $("#name-header").text(drink.strDrink);
+    $("#drink-image").attr({
+        src: drink.strDrinkThumb
+    });
+    $("#glass").text(drink.strGlass);
+    $("#steps").text(drink.strInstructions);
+
+var ingredients = [];
+var measurements = [];
+
+for (var key in drink) {
+    if (drink.hasOwnProperty(key)) {
+        if (key.includes("strIngredient")) {
+        ingredients.push(drink[key]);
+        console.log(ingredients);
+        } else if (key.includes("strMeasure")) {
+            measurements.push(drink[key]);
+        }
+    }
+};
+
+    for (i=0; i<ingredients.length; i++) {
+        if (ingredients[i] != "" & ingredients[i] != null) {
+            $("<li>").text(measurements[i] + ingredients[i]).appendTo("#ingredients");
+        }
+    };
+
+  });
+</script>
+
 <script src="../public/js/index.js"></script>
-<script src="../public/js/view-recipe.js"></script>
