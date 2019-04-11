@@ -48,7 +48,12 @@ $("#search-btn").on("click", function() {
             src: results.strDrinkThumb,
             class: "rounded-circle img-responsive result-img"
           })
-          .appendTo(rec);
+          .appendTo(rec)
+          .click(function() {
+            window.open(
+              "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + id
+            );
+          });
 
         $("#search-results").append(rec);
       }
