@@ -17,6 +17,7 @@ const nexmo = new Nexmo({
   apiSecret: 'GwbxaTmNsvI9yDai'
 })
 
+
 if (config.use_env_variable) {
   var sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
@@ -24,7 +25,7 @@ if (config.use_env_variable) {
     config.database,
     config.username,
     process.env.MYSQL_PASSWORD,
-    config
+    config,
   );
 }
 
@@ -38,6 +39,7 @@ fs.readdirSync(__dirname)
     var model = sequelize.import(path.join(__dirname, file));
     db[model.name] = model;
   });
+
 
 Object.keys(db).forEach(function(modelName) {
   if (db[modelName].associate) {

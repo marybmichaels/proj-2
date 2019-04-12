@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 var db = require("../models");
-var request = require("request");
+// var request = require("request");
 
 // var request = require("../models/apicall");
 
