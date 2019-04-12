@@ -43,12 +43,12 @@ module.exports = function(app) {
     });
   });
 
-//   app.post("/send", (req, res) => {
-//     // send SMS
-//     const from = "13612354508";
-//     const to = "13216980087";
-//     const text = "Hello from Nexmo";
+  //   app.post("/send", (req, res) => {
+  //     // send SMS
+  //     const from = "13612354508";
+  //     const to = "13216980087";
+  //     const text = "Hello from Nexmo";
 
-//     nexmo.message.sendSms(from, to, text);
-//   });
+  //     nexmo.message.sendSms(from, to, text);
+  //   });
 };
