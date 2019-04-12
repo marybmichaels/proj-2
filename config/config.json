@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": null,
-    "database": "project2",
+    "database": "FormDB",
     "host": "localhost",
     "dialect": "mysql"
   },
