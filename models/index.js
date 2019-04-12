@@ -8,7 +8,7 @@ var basename = path.basename(module.filename);
 var env = process.env.NODE_ENV || "development";
 var config = require(__dirname + "/../config/config.json")[env];
 var db = {};
-const Nexmo = require('nexmo');
+// const Nexmo = require('nexmo');
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 
