@@ -72,12 +72,13 @@
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
+    
 console.log("ugh");
 var path = window.location.pathname;
 console.log("path= " + path);
 var split = path.split("/");
 console.log(split);
-var id = split[1];
+var id = split[2];
 console.log(id)
 
 var queryURL =
@@ -113,9 +114,13 @@ for (var key in drink) {
 
     for (i=0; i<ingredients.length; i++) {
         if (ingredients[i] != "" & ingredients[i] != null) {
-            $("<li>").text(measurements[i] + ingredients[i]).appendTo("#ingredients");
+            $("<li>").text(measurements[i] + " " + ingredients[i]).appendTo("#ingredients");
         }
     };
+
+$("#save-recipe").click(function() {
+
+})
 
   });
 </script>

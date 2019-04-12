@@ -80,7 +80,7 @@ var API = {
     });
   },
   getDrink: function(id) {
-    window.location = `/${id}`;
+    window.location = `/cocktail/${id}`;
   },
   deleteExample: function(id) {
     return $.ajax({
