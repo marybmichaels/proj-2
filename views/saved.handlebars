@@ -10,22 +10,23 @@
                 <a class="nav-link" href="/">search</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="/saved">saved recipes</a>
+                <a class="nav-link active" href="/saved/{{userID}}">saved recipes</a>
             </li>
         </ul>
   </div>
 </nav>
 <section id="results-section">
-    <h1>{{user}}'s Recipes</h1>
+    <h1>Your Recipes</h1>
     <br>
-    <div class="row result-show">
+    <div class="row result-show text-center">
         {{#each drinks}}
-        <a href="">
-        <div class="result col-sm-3" id="{{id}}">
+        <div class="col-sm-3">
+        <div class="result pb-0" id="{{drinkID}}">
             <h4 class="results-name">{{name}}</h4>
-            <img src="{{img}}" class="rounded-circle img-responsive result-img">
+            <img src="{{imageURL}}" class="rounded-circle img-responsive result-img">
         </div>
-        </a>
+        <div id="{{id}}" class="btn text-white btn-sml remove mb-5">remove</div>
+        </div>
         {{/each}}
     </div>
   </div>

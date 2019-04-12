@@ -25,9 +25,9 @@ module.exports = function(app) {
     db.Drink.findAll({
       where: {
         userID: req.params.user
-      };
-    }).then(function(dbExamples) {
-      res.json(dbExamples);
+      }
+    }).then(function(dbDrinks) {
+      res.json(dbDrinks);
     });
   });
 
@@ -45,10 +45,13 @@ module.exports = function(app) {
   });
 
   // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(
-      dbExample
-    ) {
+  app.delete("/remove/:user/:id", function(req, res) {
+    db.Drink.destroy({
+      where: {
+        userID: req.params.user,
+        id: req.params.id
+      }
+    }).then(function(dbExample) {
       res.json(dbExample);
     });
   });
