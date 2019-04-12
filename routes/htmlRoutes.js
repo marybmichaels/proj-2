@@ -18,7 +18,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/:id", function(req, res) {
+  app.get("/cocktail/:id", function(req, res) {
     var id = req.params.id;
     res.render("view-recipe");
     console.log("you made it here :" + id);
