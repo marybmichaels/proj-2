@@ -21,24 +21,37 @@ module.exports = function(app) {
   // });
 
   // Get all examples
-  app.get("/api/:id", function(_req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
+  app.get("/savedrecipes/:user", function(_req, res) {
+    db.Drink.findAll({
+      where: {
+        userID: req.params.user
+      }
+    }).then(function(dbDrinks) {
+      res.json(dbDrinks);
     });
   });
 
   // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
+  app.post("/save", function(req, res) {
+    db.Drink.create({
+      userID: "1",
+      drinkID: req.body.id,
+      name: req.body.name,
+      imageURL: req.body.image,
+      URL: req.body.url
+    }).then(function(dbDrink) {
+      res.json(dbDrink);
     });
   });
 
   // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(
-      dbExample
-    ) {
+  app.delete("/remove/:user/:id", function(req, res) {
+    db.Drink.destroy({
+      where: {
+        userID: req.params.user,
+        id: req.params.id
+      }
+    }).then(function(dbExample) {
       res.json(dbExample);
     });
   });

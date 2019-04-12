@@ -1,9 +1,4 @@
-// Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
-
+// Press enter to search after input
 $("form").on("submit", event => {
   event.preventDefault();
 });
@@ -61,6 +56,7 @@ $("#search-btn").on("click", function() {
   });
 });
 
+// If a result is clicked, then open "view recipe"
 $(document).on("click", ".result", function() {
   var id = this.id;
   console.log(`
@@ -87,78 +83,20 @@ var API = {
   getDrink: function(id) {
     window.location = `/cocktail/${id}`;
   },
-  deleteExample: function(id) {
+  delete: function(user, id) {
     return $.ajax({
-      url: "api/examples/" + id,
+      url: "../remove/" + user + "/" + id,
       type: "DELETE"
+    }).then(function() {
+      location.reload();
     });
   }
 };
 
-// refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
-      var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
-
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": example.id
-        })
-        .append($a);
-
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
-
-      $li.append($button);
-
-      return $li;
-    });
-
-    $exampleList.empty();
-    $exampleList.append($examples);
-  });
-};
-
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-var handleFormSubmit = function(event) {
-  event.preventDefault();
-
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
-  };
-
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
-    return;
-  }
-
-  API.saveExample(example).then(function() {
-    refreshExamples();
-  });
-
-  $exampleText.val("");
-  $exampleDescription.val("");
-};
-
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function() {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
-
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
-  });
-};
-
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+// If remove is clicked, then unsave recipe
+$(document).on("click", ".remove", function() {
+  var user = "1";
+  var id = this.id;
+  console.log(user, "/", id);
+  API.delete(user, id);
+});

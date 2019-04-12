@@ -10,7 +10,7 @@
                 <a class="nav-link" href="/">search</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="/saved">saved recipes</a>
+                <a class="nav-link active" href="/saved/1">saved recipes</a>
             </li>
         </ul>
   </div>
@@ -72,7 +72,6 @@
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-    
 console.log("ugh");
 var path = window.location.pathname;
 console.log("path= " + path);
@@ -81,48 +80,67 @@ console.log(split);
 var id = split[2];
 console.log(id)
 
+var recipe = {};
+
 var queryURL =
     "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + id;
-  $.ajax({
+$.ajax({
     url: queryURL,
     method: "GET"
-  }).then(function(response) {
+}).then(function(response) {
     console.log(response);
-    
+
     var drink = response.drinks[0];
 
-    $("#name-header").text(drink.strDrink);
+    recipe = {
+        "id": id,
+        "name": drink.strDrink,
+        "image": drink.strDrinkThumb,
+        "url": window.location.pathname
+    };
+
+    $("#name-header").text(recipe.name);
     $("#drink-image").attr({
-        src: drink.strDrinkThumb
+        src: recipe.image
     });
     $("#glass").text(drink.strGlass);
     $("#steps").text(drink.strInstructions);
 
-var ingredients = [];
-var measurements = [];
+    var ingredients = [];
+    var measurements = [];
 
-for (var key in drink) {
-    if (drink.hasOwnProperty(key)) {
-        if (key.includes("strIngredient")) {
-        ingredients.push(drink[key]);
-        console.log(ingredients);
-        } else if (key.includes("strMeasure")) {
-            measurements.push(drink[key]);
+    for (var key in drink) {
+        if (drink.hasOwnProperty(key)) {
+            if (key.includes("strIngredient")) {
+            ingredients.push(drink[key]);
+            console.log(ingredients);
+            } else if (key.includes("strMeasure")) {
+                measurements.push(drink[key]);
+            }
         }
-    }
-};
+    };
 
     for (i=0; i<ingredients.length; i++) {
         if (ingredients[i] != "" & ingredients[i] != null) {
             $("<li>").text(measurements[i] + " " + ingredients[i]).appendTo("#ingredients");
         }
     };
+});
+
+function saveRecipe(info) {
+$.ajax({
+    method: "POST",
+    url: "../save",
+    data: info
+}).then(function() {
+    location.reload();
+});
+};
 
 $("#save-recipe").click(function() {
-
-})
-
-  });
+   saveRecipe(recipe);
+   console.log(recipe);
+});
 </script>
 
 <script src="../public/js/index.js"></script>

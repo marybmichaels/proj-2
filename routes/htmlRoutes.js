@@ -10,10 +10,10 @@ module.exports = function(app) {
     res.render("results");
   });
 
-  app.get("/saved", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
+  app.get("/saved/:user", function(req, res) {
+    db.Drink.findAll({}).then(function(dbDrinks) {
       res.render("saved", {
-        drinks: dbExamples
+        drinks: dbDrinks
       });
     });
   });
