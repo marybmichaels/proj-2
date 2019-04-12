@@ -21,16 +21,26 @@ module.exports = function(app) {
   // });
 
   // Get all examples
-  app.get("/api/:id", function(_req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
+  app.get("/savedrecipes/:user", function(_req, res) {
+    db.Drink.findAll({
+      where: {
+        userID: req.params.user
+      };
+    }).then(function(dbExamples) {
       res.json(dbExamples);
     });
   });
 
   // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
+  app.post("/save", function(req, res) {
+    db.Drink.create({
+      userID: "1",
+      drinkID: req.body.id,
+      name: req.body.name,
+      imageURL: req.body.image,
+      URL: req.body.url
+    }).then(function(dbDrink) {
+      res.json(dbDrink);
     });
   });
 

@@ -1,9 +1,4 @@
-// Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
-
+// Press enter to search after input
 $("form").on("submit", event => {
   event.preventDefault();
 });
@@ -56,6 +51,7 @@ $("#search-btn").on("click", function() {
   });
 });
 
+// If a result is clicked, then open "view recipe"
 $(document).on("click", ".result", function() {
   var id = this.id;
   console.log(`
