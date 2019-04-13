@@ -13,6 +13,7 @@ module.exports = function(app) {
       }
     }).then(function(dbDrinks) {
       res.json(dbDrinks);
+      console.log("saved recipes get worked");
     });
   });
 
