@@ -19,6 +19,38 @@ module.exports = function(app) {
   //   });
   //   // console.log(res);
   // });
+  app.get("/results", function(req, res) {
+    var dbQuery = "SELECT * FROM formInfo";
+
+    connection.query(dbQuery, function(err, result) {
+      if (err) {
+        throw err;
+      }
+      res.json(result);
+      console.log(connection);
+    });
+  });
+
+  // Add a chirp
+  app.post("/results", function(req, res) {
+    console.log("Working:");
+    console.log(req.body);
+
+    var dbQuery = "INSERT INTO formInfo (name, email, password) VALUES (?,?,?)";
+
+    connection.query(
+      dbQuery,
+      [req.body.name, req.body.email, req.body.password],
+      // eslint-disable-next-line no-unused-vars
+      function(err, result) {
+        if (err) {
+          throw err;
+        }
+        console.log("Saved!");
+        res.end();
+      }
+    );
+  });
 
   // Get all examples
   app.get("/savedrecipes/:user", function(_req, res) {
@@ -54,6 +86,18 @@ module.exports = function(app) {
     }).then(function(dbExample) {
       res.json(dbExample);
     });
+  });
+
+  app.post("/results", function(req, res) {
+    db.formInfo
+      .create({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password
+      })
+      .then(function(dbformInfo) {
+        res.json(dbformInfo);
+      });
   });
 
   //   app.post("/send", (req, res) => {
