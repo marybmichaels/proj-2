@@ -93,8 +93,6 @@ var API = {
   }
 };
 
-$(".collapse").collapse();
-
 // If remove is clicked, then unsave recipe
 $(document).on("click", ".remove", function() {
   var user = "1";
