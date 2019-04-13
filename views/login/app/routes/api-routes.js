@@ -4,7 +4,7 @@
 
 // Dependencies
 // =============================================================
-var connection = require("../config/connection.js");
+// var connection = require("../");
 
 // Routes
 // =============================================================
@@ -14,22 +14,31 @@ module.exports = function(app) {
     var dbQuery = "SELECT * FROM formInfo";
 
     connection.query(dbQuery, function(err, result) {
-      if (err) throw err;
+      if (err) {
+        throw err;
+      }
       res.json(result);
     });
   });
 
   // Add a chirp
-  app.post("/api/new", function(req, res) {
+  app.post("/results", function(req, res) {
     console.log("Chirp Data:");
     console.log(req.body);
 
     var dbQuery = "INSERT INTO formInfo (name, email, password) VALUES (?,?,?)";
 
-    connection.query(dbQuery, [req.body.name, req.body.email, req.body.password], function(err, result) {
-      if (err) throw err;
-      console.log("Chirp Successfully Saved!");
-      res.end();
-    });
+    connection.query(
+      dbQuery,
+      [req.body.name, req.body.email, req.body.password],
+      // eslint-disable-next-line no-unused-vars
+      function(err, result) {
+        if (err) {
+          throw err;
+        }
+        console.log("Chirp Successfully Saved!");
+        res.end();
+      }
+    );
   });
 };

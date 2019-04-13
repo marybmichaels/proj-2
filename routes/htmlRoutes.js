@@ -39,6 +39,10 @@ module.exports = function(app) {
     res.render("login");
   });
 
+  app.get("/registered", function(req, res) {
+    res.render("results");
+  });
+
   app.get("/register", function(req, res) {
     res.render("register");
   });
