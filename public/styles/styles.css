@@ -114,7 +114,7 @@ li {
   margin-top: 2em;
 }
 
-.result {
+.result, .remove {
   cursor: pointer;
 }
 
@@ -123,4 +123,16 @@ li {
   margin: auto;
   color: #383838;
   opacity: .5;
+}
+
+a {
+  color: #FC022A;
+}
+
+a :hover {
+  color: #383838;
+}
+
+.card, .form-control {
+  border-radius: 0;
 }
