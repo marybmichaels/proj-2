@@ -56,6 +56,18 @@ module.exports = function(app) {
     });
   });
 
+  app.post("/results", function(req, res) {
+    db.formInfo
+      .create({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password
+      })
+      .then(function(dbformInfo) {
+        res.json(dbformInfo);
+      });
+  });
+
   //   app.post("/send", (req, res) => {
   //     // send SMS
   //     const from = "13612354508";

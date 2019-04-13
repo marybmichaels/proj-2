@@ -36,7 +36,6 @@ module.exports = function(app) {
   });
 
   app.get("/login", function(req, res) {
-<<<<<<< HEAD
     res.render("login");
   });
 
@@ -46,9 +45,6 @@ module.exports = function(app) {
 
   app.get("/forgot", function(req, res) {
     res.render("forgot");
-=======
-    res.render("../views/login/app/public/index.html");
->>>>>>> d440f6c2fdb1cca110336711fa6eea12309b8e85
   });
 
   // Render 404 page for any unmatched routes
